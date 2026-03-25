@@ -1,0 +1,51 @@
+############################
+# Angular
+############################
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.cache/
+frontend/.sass-cache/
+frontend/coverage/
+
+############################
+# Spring Boot / Java
+############################
+backend/target/
+backend/*.log
+backend/logs/
+backend/tmp/
+backend/*.class
+
+############################
+# Maven / Gradle
+############################
+backend/.mvn/
+backend/.gradle/
+backend/build/
+
+############################
+# IDEs
+############################
+.vscode/
+.idea/
+*.iml
+
+############################
+# Sistema
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Variáveis de ambiente
+############################
+.env
+*.env
+
+############################
+# Outros
+############################
+*.swp
+*.lock
+infoAula.txt
