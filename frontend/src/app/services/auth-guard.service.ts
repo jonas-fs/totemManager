@@ -21,4 +21,8 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
+
+  getUserName(): string | null {
+    return sessionStorage.getItem('username');
+  }
 }

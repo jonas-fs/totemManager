@@ -3,10 +3,11 @@ import { FooterComponent } from "../../components/footer/footer.component";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { AuthGuard } from '../../services/auth-guard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,30 +17,38 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent {  
+export class DashboardComponent implements OnInit {
+  constructor(private authGuard: AuthGuard) {}
+  userName: string | null = null;
+
+  ngOnInit(): void {
+    this.userName = this.authGuard.getUserName();
+    console.log(this.userName);
+  }
+
   imagePreview: string | ArrayBuffer | null = null;
   fileName = "NomeImagem";
 
-onFileSelected(event: Event) {
-  const input = event.target as HTMLInputElement;
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
 
-  if (!input.files || input.files.length === 0) return;
-  const file = input.files[0];
-  this.fileName = file.name;  
-  
-  if (!file.type.startsWith('image/')) {
-    alert('Selecione apenas imagens.');
-    return;
+    if (!input.files || input.files.length === 0) return;
+    const file = input.files[0];
+    this.fileName = file.name;  
+    
+    if (!file.type.startsWith('image/')) {
+      alert('Selecione apenas imagens.');
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.imagePreview = reader.result;    
+    };
+
+    reader.readAsDataURL(file);
   }
-
-  const reader = new FileReader();
-
-  reader.onload = () => {
-    this.imagePreview = reader.result;    
-  };
-
-  reader.readAsDataURL(file);
-}
 
 }
 
