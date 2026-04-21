@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="container">
+
+    <input  type="file"  #fileInput  hidden  accept="image/*" (change)="onFileSelected($event)"/>
+    <button matFab extended (click)="fileInput.click()">
+        <mat-icon>image_search</mat-icon>
+        Buscar imagem
+    </button>
+
+    <mat-form-field>
+        <mat-label>Selecionar Tela</mat-label>
+        <mat-select>
+            <mat-option value="tela_1">Tela 1</mat-option>
+            <mat-option value="tela_2">Tela 2</mat-option>
+        </mat-select>    
+    </mat-form-field>
+    <button matFab extended>
+        <mat-icon>send</mat-icon>
+    </button>
+
+</div>
+
+    @if (imagePreview) {
+        <div class="preview">
+            <img [src]="imagePreview">
+            <span>{{ fileName }}</span>
+        </div>
+    }
+<app-footer></app-footer>

@@ -18,6 +18,17 @@ backend/tmp/
 backend/*.class
 
 ############################
+# Banco de dados
+############################
+*.db
+
+############################
+# Configuração Spring
+############################
+backend/src/main/resources/application.properties
+backend/**/application.properties
+
+############################
 # Maven / Gradle
 ############################
 backend/.mvn/
@@ -49,3 +60,5 @@ Thumbs.db
 *.swp
 *.lock
 infoAula.txt
+
+
