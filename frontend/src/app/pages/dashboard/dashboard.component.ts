@@ -8,18 +8,27 @@ import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { AuthGuard } from '../../services/auth-guard.service';
+import { ImageService } from '../../services/image.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
     CommonModule, HeaderComponent, FooterComponent, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIcon
   ],
+  providers: [
+    ImageService
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
-  constructor(private authGuard: AuthGuard) {}
+  constructor(private authGuard: AuthGuard,
+              private imageService: ImageService,
+              private toastService: ToastrService
+  ) {}
   userName: string | null = null;
+  inputFile: File | null = null;
 
   ngOnInit(): void {
     this.userName = this.authGuard.getUserName();
@@ -34,6 +43,7 @@ export class DashboardComponent implements OnInit {
 
     if (!input.files || input.files.length === 0) return;
     const file = input.files[0];
+    this.inputFile = input.files[0];
     this.fileName = file.name;  
     
     if (!file.type.startsWith('image/')) {
@@ -48,6 +58,19 @@ export class DashboardComponent implements OnInit {
     };
 
     reader.readAsDataURL(file);
+  }
+
+  submit(){
+    console.log("Botão Clicado");
+    this.imageService.save(this.fileName, this.inputFile, "").subscribe({      
+      
+      next: () => {
+        console.log("Chegou no next");
+        this.toastService.success("Imagem Cadastrada com Sucesso.");
+        //this.router.navigate(["dashboard"]);
+      },
+      error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde.")
+    })
   }
 
 }

@@ -9,5 +9,4 @@ public class TotemManagerApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TotemManagerApiApplication.class, args);
 	}
-
 }
