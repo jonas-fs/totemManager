@@ -21,6 +21,7 @@ backend/*.class
 # Banco de dados
 ############################
 *.db
+**/data/*
 
 ############################
 # Configuração Spring
