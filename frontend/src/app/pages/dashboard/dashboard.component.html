@@ -9,10 +9,10 @@
 
     <mat-form-field>
         <mat-label>Selecionar Tela</mat-label>
-        <mat-select>
+        <mat-select [(ngModel)]="screen">
             <mat-option value="tela_1">Tela 1</mat-option>
             <mat-option value="tela_2">Tela 2</mat-option>
-        </mat-select>    
+        </mat-select>
     </mat-form-field>
 
     <button matFab extended (click)="submit()">

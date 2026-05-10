@@ -8,4 +8,5 @@ import com.example.totemmanagerapi.domain.screen.Screen;
 
 public interface ScreenRepository extends JpaRepository <Screen, String>{
     Optional<Screen> findByName(String name);
+    Optional<Screen> findById(String id);
 }

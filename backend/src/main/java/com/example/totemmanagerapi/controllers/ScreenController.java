@@ -3,7 +3,6 @@ package com.example.totemmanagerapi.controllers;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,7 @@ public class ScreenController {
         if(screen.isEmpty()){
             Screen newScreen = new Screen();
             newScreen.setName(body.name());
-            this.repository.save(newScreen);            
+            this.repository.save(newScreen);
             
             return ResponseEntity.ok(new ScreenDTO(newScreen.getId(), ""));            
         }        

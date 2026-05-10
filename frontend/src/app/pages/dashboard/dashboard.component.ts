@@ -10,11 +10,12 @@ import { MatIcon } from '@angular/material/icon';
 import { AuthGuard } from '../../services/auth-guard.service';
 import { ImageService } from '../../services/image.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    CommonModule, HeaderComponent, FooterComponent, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIcon
+    CommonModule, HeaderComponent, FooterComponent, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIcon, FormsModule
   ],
   providers: [
     ImageService
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit {
   ) {}
   userName: string | null = null;
   inputFile: File | null = null;
+  screen: string = '';
 
   ngOnInit(): void {
     this.userName = this.authGuard.getUserName();
@@ -44,7 +46,7 @@ export class DashboardComponent implements OnInit {
     if (!input.files || input.files.length === 0) return;
     const file = input.files[0];
     this.inputFile = input.files[0];
-    this.fileName = file.name;  
+    this.fileName = file.name;
     
     if (!file.type.startsWith('image/')) {
       alert('Selecione apenas imagens.');
@@ -62,8 +64,14 @@ export class DashboardComponent implements OnInit {
 
   submit(){
     console.log("Botão Clicado");
-    this.imageService.save(this.fileName, this.inputFile, "").subscribe({      
-      
+    console.log(this.screen);
+
+    let idTela = "9d5db2bb-3d4c-4668-b5f3-764bfad72fba"; //TO-DO - MOC    
+    if (this.screen === "tela_2"){ //TO-DO - MOC
+      idTela = "7421852e-5b3e-451e-abdf-a19b33ed2c42"; //TO-DO - MOC
+    }
+
+    this.imageService.save(this.inputFile, idTela).subscribe({      
       next: () => {
         console.log("Chegou no next");
         this.toastService.success("Imagem Cadastrada com Sucesso.");

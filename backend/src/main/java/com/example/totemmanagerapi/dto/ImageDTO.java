@@ -1,5 +1,7 @@
 package com.example.totemmanagerapi.dto;
 
-public record ImageDTO(String id) {
+import org.springframework.web.multipart.MultipartFile;
+
+public record ImageDTO(String id, MultipartFile file) {
 
 }

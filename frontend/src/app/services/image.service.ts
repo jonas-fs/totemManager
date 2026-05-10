@@ -10,13 +10,25 @@ export class ImageService {
 
   constructor(private httpClient: HttpClient) { }
 
-  save (name: string, file: File | null, ScreenID : String) {
-    console.log("Save chamado. " + name + file?.name + ScreenID);
+  save (file: File | null, screenID : string) {
+    console.log("Save chamado. " + file?.name + screenID);
     
-    return this.httpClient.post(this.apiUrl + "/image", { name, file, ScreenID }).pipe(
-      tap((value) => {
-        console.log(value);
-      })
-    )
+    if (!file) {
+      console.error("Arquivo não informado");
+      return this.httpClient.post(`/users`, ""); //TO-DO consertar isso.
+    }
+
+    const formData = new FormData();
+
+    formData.append('file', file);
+    formData.append('screenID', screenID);
+
+    return this.httpClient.post(this.apiUrl + "/image", formData);
+    
+    // return this.httpClient.post(this.apiUrl + "/image", { name, file, ScreenID }).pipe(
+    //   tap((value) => {
+    //     console.log(value);
+    //   })
+    // )
   }
 }
