@@ -3,6 +3,8 @@ package com.example.totemmanagerapi.domain.image;
 import java.util.UUID;
 
 import com.example.totemmanagerapi.domain.screen.Screen;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,7 +34,22 @@ public class Image {
     @Id    
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "screen_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "screen_id")
+    //@JsonBackReference
     private Screen screen;
 }
+
+
+
+/*
+public void addImage(Image image) {
+    images.add(image);
+    image.setScreen(this);
+}
+
+public void removeImage(Image image) {
+    images.remove(image);
+    image.setScreen(null);
+}
+*/

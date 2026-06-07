@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.example.totemmanagerapi.domain.user.User;
-import com.example.totemmanagerapi.repositories.UserRepository;
+import com.example.totemmanagerapi.repository.UserRepository;
 
 import java.io.IOException;
 import java.util.Collections;

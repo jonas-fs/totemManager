@@ -1,4 +1,4 @@
-package com.example.totemmanagerapi.controllers;
+package com.example.totemmanagerapi.controller;
 
 import java.util.Optional;
 
@@ -14,7 +14,7 @@ import com.example.totemmanagerapi.dto.LoginRequestDTO;
 import com.example.totemmanagerapi.dto.RegisterRequestDTO;
 import com.example.totemmanagerapi.dto.ResponseDTO;
 import com.example.totemmanagerapi.infra.security.TokenService;
-import com.example.totemmanagerapi.repositories.UserRepository;
+import com.example.totemmanagerapi.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

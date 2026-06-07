@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.totemmanagerapi.domain.image.Image;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,8 +30,11 @@ public class Screen {
     private String id;
     private String name;
     
-    @OneToMany(mappedBy = "screen",
-               cascade = CascadeType.ALL,
-               orphanRemoval = true)
+    // @OneToMany(
+    //     mappedBy = "screen",
+    //     cascade = CascadeType.ALL,
+    //     orphanRemoval = true
+    // )
+    @OneToMany(mappedBy = "screen")
     private List<Image> images = new ArrayList<>();
 }

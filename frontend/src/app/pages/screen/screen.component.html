@@ -1,0 +1,18 @@
+<p>Tela: {{screenName}}</p>
+
+@if (imagens$ | async; as imagens) {
+
+  @for (imagem of imagens; track imagem) {
+
+    <div>
+      {{ imagem.id }}
+      <img src="http://192.168.1.24:8080/images/{{imagem.id}}.jpg" alt="Descrição da minha imagem">
+    </div>
+
+  }
+
+} @else {
+
+  <p>Carregando...</p>
+
+}

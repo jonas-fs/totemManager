@@ -7,6 +7,8 @@ frontend/.angular/
 frontend/.cache/
 frontend/.sass-cache/
 frontend/coverage/
+frontend/environments/environment.development.ts
+frontend/environments/environment.ts
 
 ############################
 # Spring Boot / Java

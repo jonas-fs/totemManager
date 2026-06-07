@@ -1,4 +1,4 @@
-package com.example.totemmanagerapi.controllers;
+package com.example.totemmanagerapi.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

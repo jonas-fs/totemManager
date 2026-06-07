@@ -1,9 +1,12 @@
-package com.example.totemmanagerapi.controllers;
+package com.example.totemmanagerapi.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.totemmanagerapi.domain.image.Image;
 import com.example.totemmanagerapi.domain.screen.Screen;
 import com.example.totemmanagerapi.dto.ImageDTO;
-import com.example.totemmanagerapi.repositories.ImageRepository;
-import com.example.totemmanagerapi.repositories.ScreenRepository;
 import com.example.totemmanagerapi.infra.storege.StorageService;
+import com.example.totemmanagerapi.repository.ImageRepository;
+import com.example.totemmanagerapi.repository.ScreenRepository;
+import com.example.totemmanagerapi.service.imageService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,11 +33,12 @@ public class ImageController {
     private final ImageRepository imageRepository;
     private final ScreenRepository screenRepository;
     private final StorageService storgeService;
+    private final imageService imageService;
 
     @PostMapping
     public ResponseEntity<?> create(@RequestPart("file") MultipartFile file, @RequestPart("screenID") String screenID){
         
-        Optional<Screen> screen = screenRepository.findById(screenID);
+        Optional<Screen> screen = screenRepository.findById(screenID);        
 
         if (screen.isEmpty()){
             return ResponseEntity.badRequest().build();
@@ -50,6 +55,29 @@ public class ImageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<?> list(@RequestParam (defaultValue = "") String screenID){
+        
+        Optional<Screen> screen = screenRepository.findById(screenID);
+
+        if (screen.isEmpty()){
+            return ResponseEntity.ok(imageService.listAll());
+        }
+
+        Image newImage = new Image(screen.get());
+
+        // try {
+        //     if(storgeService.save(file, newImage.getId())){
+        //         newImage = this.imageRepository.save(newImage);
+        //         //return ResponseEntity.ok(new ImageDTO(newImage.getId(), null)); //TO-DO avaliar esse trecho em relação ao response
+        //         return ResponseEntity.created(null).build();
+        //     }
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
         return ResponseEntity.badRequest().build();
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.example.totemmanagerapi.domain.user.User;
-import com.example.totemmanagerapi.repositories.UserRepository;
+import com.example.totemmanagerapi.repository.UserRepository;
 
 import java.util.ArrayList;
 

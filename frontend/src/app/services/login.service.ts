@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { LoginResponse } from '../types/login-response.type';
 import { tap } from 'rxjs';
 
@@ -7,7 +8,7 @@ import { tap } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  apiUrl: string = "http://192.168.1.2:8080/auth"
+  apiUrl: string = environment.apiUrl + "/auth"
 
   constructor(private httpClient: HttpClient) { }
 

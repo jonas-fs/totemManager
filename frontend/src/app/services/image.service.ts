@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImageService {
-  apiUrl: string = "http://192.168.1.2:8080"
+  apiUrl: string = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -30,5 +31,11 @@ export class ImageService {
     //     console.log(value);
     //   })
     // )
+  }
+
+  list (screenID : string) {
+    const params = new HttpParams().set('screenID', screenID);
+    return this.httpClient.get<any[]>(this.apiUrl + "/image", {params});
+    
   }
 }

@@ -1,4 +1,4 @@
-package com.example.totemmanagerapi.repositories;
+package com.example.totemmanagerapi.repository;
 
 import java.util.Optional;
 

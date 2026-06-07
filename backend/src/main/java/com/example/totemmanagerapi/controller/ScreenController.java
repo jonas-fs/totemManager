@@ -1,4 +1,4 @@
-package com.example.totemmanagerapi.controllers;
+package com.example.totemmanagerapi.controller;
 
 import java.util.Optional;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.totemmanagerapi.domain.screen.Screen;
 import com.example.totemmanagerapi.dto.ScreenDTO;
-import com.example.totemmanagerapi.repositories.ScreenRepository;
+import com.example.totemmanagerapi.repository.ScreenRepository;
 
 import lombok.RequiredArgsConstructor;
 
